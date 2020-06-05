@@ -1,23 +1,27 @@
 using System;
 
 namespace Vehicle {
-    public class Tesla : Vehicle {
+    public class Tesla : Vehicle, IElectric {
         public double BatteryKWh { get; set; }
 
+        public int CurrentChargePercentage { get; set; } = 50;
+
         public void ChargeBattery () {
-            Console.WriteLine ("Battery now at 100%");
+            CurrentChargePercentage = 100;
         }
         public override void Drive () {
             Console.WriteLine ($"The {MainColor} Tesla drives by you. *silence*");
         }
     }
 
-    public class Zero : Vehicle // Electric motorcycle
+    public class Zero : Vehicle, IElectric // Electric motorcycle
     {
         public double BatteryKWh { get; set; }
 
+        public int CurrentChargePercentage { get; set; } = 50;
+
         public void ChargeBattery () {
-            Console.WriteLine ("Battery now at 100%");
+            CurrentChargePercentage = 100;
         }
 
         public override void Drive () {
@@ -25,11 +29,13 @@ namespace Vehicle {
         }
     }
 
-    public class Cessna : Vehicle // Propellor light aircraft
+    public class Cessna : Vehicle, IGas // Propellor light aircraft
     {
         public double FuelCapacity { get; set; }
+
+        public int CurrentTankPercentage { get; set; } = 50;
         public void RefuelTank () {
-            Console.WriteLine ("Gas tank is full");
+            CurrentTankPercentage = 100;
         }
 
         public override void Drive () {
@@ -37,11 +43,12 @@ namespace Vehicle {
         }
     }
 
-    public class Ram : Vehicle // Gas powered truck
+    public class Ram : Vehicle, IGas // Gas powered truck
     {
         public double FuelCapacity { get; set; }
+        public int CurrentTankPercentage { get; set; } = 50;
         public void RefuelTank () {
-            Console.WriteLine ("Gas tank is full");
+            CurrentTankPercentage = 100;
         }
 
         public override void Drive () {
